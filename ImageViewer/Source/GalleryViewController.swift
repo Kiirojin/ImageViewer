@@ -43,7 +43,7 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     fileprivate var galleryPagingMode = GalleryPagingMode.standard
     fileprivate var headerLayout = HeaderLayout.center(25)
     fileprivate var footerLayout = FooterLayout.center(25)
-    fileprivate var closeLayout = ButtonLayout.pinRight(8, 16)
+    fileprivate var closeLayout = UIDevice.current.orientation == .landscapeLeft ? ButtonLayout.pinRight(8, 32) : ButtonLayout.pinRight(8, 16)
     fileprivate var seeAllCloseLayout = ButtonLayout.pinRight(8, 16)
     fileprivate var thumbnailsLayout = ButtonLayout.pinLeft(8, 16)
     fileprivate var deleteLayout = ButtonLayout.pinRight(8, 66)
