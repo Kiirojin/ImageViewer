@@ -43,7 +43,8 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
     fileprivate var galleryPagingMode = GalleryPagingMode.standard
     fileprivate var headerLayout = HeaderLayout.center(25)
     fileprivate var footerLayout = FooterLayout.center(25)
-    fileprivate var closeLayout = UIDevice.current.orientation.isLandscape ? ButtonLayout.pinRight(8, 32) : ButtonLayout.pinRight(8, 16)
+    fileprivate var closeLayout = ButtonLayout.pinRight(8, 16)
+        
     fileprivate var seeAllCloseLayout = ButtonLayout.pinRight(8, 16)
     fileprivate var thumbnailsLayout = ButtonLayout.pinLeft(8, 16)
     fileprivate var deleteLayout = ButtonLayout.pinRight(8, 66)
@@ -341,10 +342,12 @@ open class GalleryViewController: UIPageViewController, ItemControllerDelegate {
         switch layout {
 
         case .pinRight(let marginTop, let marginRight):
-
+            
             button.autoresizingMask = [.flexibleBottomMargin, .flexibleLeftMargin]
-            button.frame.origin.x = self.view.bounds.size.width - marginRight - button.bounds.size.width
+            let notchAdjustment: CGFloat = UIScreen.hasNotch && UIDevice.current.orientation == .landscapeRight ? 16 : 0
+            button.frame.origin.x = self.view.bounds.size.width - marginRight - button.bounds.size.width - notchAdjustment
             button.frame.origin.y = defaultInsets.top + marginTop
+
 
         case .pinLeft(let marginTop, let marginLeft):
 
